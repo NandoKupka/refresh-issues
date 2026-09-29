@@ -1,17 +1,17 @@
 # Refresh Issues
 
-Uma skill para manter as Issues do GitHub alinhadas com o que foi entregue. Ela compara a feature concluída com as ideias abertas, atualiza o que mudou e deixa claro o próximo passo.
+Uma skill para manter as Issues do GitHub alinhadas com o que foi entregue. Ela compara o trabalho em andamento e as entregas com as ideias abertas, atualiza o status e deixa claro o próximo passo.
 
 Foi feita para uso com o Codex em repositórios GitHub que tenham Issues.
 
 ## O que ela faz
 
-1. Confere o diff ou os commits, a branch e os testes que realmente rodaram.
+1. Confere o trabalho em andamento, o diff ou os commits e os testes que realmente rodaram.
 2. Procura Issues relacionadas pelo número e pelo objetivo, sem criar duplicatas.
-3. Atualiza o resultado, a verificação e a próxima ação. Fecha uma Issue somente quando seu objetivo foi atendido.
+3. Confere e atualiza o status no Project, nas labels existentes ou na descrição, além do resultado, da verificação e da próxima ação. Fecha uma Issue somente quando seu objetivo foi atendido.
 4. Se nenhuma Issue precisa mudar, termina sem editar o backlog.
 
-Uma revisão comum olha apenas as Issues relacionadas à entrega. Peça uma revisão geral quando quiser comparar todo o backlog.
+Uma revisão comum olha apenas as Issues relacionadas ao trabalho. Peça uma revisão geral quando quiser comparar todo o backlog.
 
 ## Issue não exige PR
 
@@ -34,7 +34,7 @@ Abra o projeto no Codex, digite `/` e selecione **refresh-issues-setup** no menu
 O setup adiciona esta instrução:
 
 ```md
-- Ao concluir uma tarefa ou commit que entrega uma feature, use $refresh-issues antes da resposta final. Uma revisão pode cobrir vários commits da mesma tarefa. Atualize apenas as Issues afetadas; se nada mudou, não edite as Issues.
+- Ao iniciar uma Issue, quando seu andamento mudar e ao concluir uma tarefa ou commit que entrega uma feature, use $refresh-issues para conferir e atualizar o status e as informações das Issues afetadas. Uma revisão pode cobrir vários commits da mesma tarefa. Se nada mudou, não edite as Issues.
 ```
 
 O setup não define política de PR nem autoriza edição de Issues no GitHub. Se quiser que o Codex mantenha o backlog sem pedir autorização a cada Issue, acrescente separadamente ao `AGENTS.md`:
@@ -44,6 +44,14 @@ O setup não define política de PR nem autoriza edição de Issues no GitHub. S
 ```
 
 A skill roda quando o Codex a chama durante uma tarefa. Ela **não instala um hook do Git**: um `git commit` feito fora de uma tarefa do Codex não a executa sozinho.
+
+## Revisar o status
+
+No Codex, selecione **refresh-issues** no menu `/` ou escreva:
+
+> $refresh-issues revise o status da Issue #41 e atualize conforme o trabalho em andamento.
+
+A mesma skill confere o status ao começar uma Issue, quando o andamento muda e ao entregar uma feature. Se a Issue já estiver num Project, ela usa o campo de status existente; sem Project, segue as labels de status do projeto ou atualiza a descrição. **Aberta** e **Em andamento** podem coexistir: fechar a Issue significa que seu objetivo foi atendido.
 
 ## Exemplo de Issue atualizada
 
