@@ -15,7 +15,7 @@ Uma revisão comum olha apenas as Issues relacionadas à entrega. Peça uma revi
 
 ## Issue não exige PR
 
-Uma Issue pode guardar só uma ideia para discutir depois. Ela começa com objetivo, estado atual e próxima pergunta; decisões, critérios e testes detalhados entram conforme o trabalho avança. A existência da Issue não obriga a abrir PR nem a executar uma suíte completa de testes. A skill segue as regras do projeto e o risco da mudança.
+Uma Issue pode guardar só uma ideia para discutir depois. Ela começa com objetivo, estado atual e próxima pergunta; decisões, critérios e testes detalhados entram conforme o trabalho avança. A existência da Issue não obriga a abrir PR nem a executar uma suíte completa de testes. Quando o objetivo estiver atendido, um commit direto em `master` pode concluir e fechar a Issue sem PR. Se o commit ainda for local, registre isso. A skill segue as regras do projeto e o risco da mudança.
 
 ## Instalação
 
@@ -41,7 +41,7 @@ Chame `$refresh-issues` após uma feature ou peça: “Revise as Issues relacion
 
 ```md
 - Ao concluir uma tarefa ou commit que entrega uma feature, use $refresh-issues antes da resposta final. Uma revisão pode cobrir vários commits da mesma tarefa. Atualize apenas as Issues afetadas. Se nada mudou, não edite as Issues.
-- Entregue por commit com verificações proporcionais ao risco. Abra PR somente quando eu pedir explicitamente.
+- Entregue por commit com verificações proporcionais ao risco. Uma Issue pode ser fechada após commit em `master` quando seu objetivo estiver atendido. Abra PR somente quando eu pedir explicitamente.
 ```
 
 Se quiser que o Codex mantenha o backlog sem pedir autorização a cada Issue, acrescente também:

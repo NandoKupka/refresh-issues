@@ -7,7 +7,7 @@ description: Reconcile GitHub Issues after a completed feature or feature commit
 
 Use esta skill depois de concluir uma feature e antes de comunicar a entrega. Uma revisão pode cobrir vários commits da mesma tarefa. Use-a também quando o usuário pedir uma revisão de Issues. Leia primeiro as regras do repositório, como `AGENTS.md`, se existirem.
 
-Uma Issue pode começar apenas como ideia ou brainstorm. Ela não exige PR, plano de testes completo nem todas as etapas de implementação só por existir. Acrescente decisões, critérios e verificação conforme a ideia amadurecer. Esta skill não impõe PR; siga o fluxo proporcional do repositório e abra um apenas quando o pedido ou as regras aplicáveis exigirem.
+Uma Issue pode começar apenas como ideia ou brainstorm. Ela não exige PR, plano de testes completo nem todas as etapas de implementação só por existir. Acrescente decisões, critérios e verificação conforme a ideia amadurecer. Uma Issue também pode ser concluída com um commit direto em `master`, sem PR, quando o objetivo estiver atendido e as regras do repositório permitirem. Esta skill não impõe PR; siga o fluxo proporcional do repositório e abra um apenas quando o pedido ou as regras aplicáveis exigirem.
 
 ## Confira o que aconteceu
 
@@ -19,7 +19,7 @@ Uma Issue pode começar apenas como ideia ou brainstorm. Ela não exige PR, plan
 
 - Antes de escrever no GitHub, confirme que o pedido atual ou as regras do repositório autorizam a manutenção das Issues. Se não autorizarem, apresente a atualização proposta ao usuário.
 - Atualize uma Issue quando a entrega mudar de fato seu estado, escopo, dependência, verificação ou próxima ação. Registre o commit ou link útil e apenas os checks observados. Preserve decisões e limites que continuam válidos.
-- Feche a Issue somente quando o objetivo descrito estiver atendido. Se ainda faltar integração, aprovação, migração, publicação ou validação exigida pela própria Issue, mantenha-a aberta e explique o próximo passo.
+- Feche a Issue quando o objetivo descrito estiver atendido, inclusive após um commit direto em `master` sem PR. Registre se o commit ainda é local. Se a própria Issue exigir aprovação, migração, publicação ou validação posterior, mantenha-a aberta e explique o próximo passo.
 - Incorpore uma ideia futura a uma Issue relacionada. Crie outra apenas quando ela tiver um objetivo independente. Não crie Issue só para registrar uma feature pequena já concluída.
 - Para uma ideia ainda vaga, registre o objetivo, o estado atual e a próxima pergunta. Deixe critérios técnicos e testes detalhados para quando houver trabalho definido.
 - Se nada mudou nas Issues, não edite nem comente apenas para registrar atividade. Confira a versão mais recente de cada Issue antes de gravar, para evitar sobrescrever trabalho paralelo ou repetir informações.
