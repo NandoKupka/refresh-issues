@@ -31,24 +31,40 @@ Crie `~/.codex/skills` antes, se a pasta ainda não existir. O resultado deve fi
 ~/.codex/skills/refresh-issues/
   SKILL.md
   agents/openai.yaml
+  scripts/setup.mjs
 ```
 
 Você também pode manter a pasta em `.codex/skills/refresh-issues/` dentro de um projeto. Para ler e editar Issues, conecte o GitHub ao Codex ou configure o `gh` com acesso ao repositório.
 
-## Uso no seu projeto
+## Setup no projeto
 
-Chame `$refresh-issues` após uma feature ou peça: “Revise as Issues relacionadas a esta entrega”. Para tornar isso parte do fluxo normal, inclua em `AGENTS.md`:
+No diretório do projeto, rode:
 
-```md
-- Ao concluir uma tarefa ou commit que entrega uma feature, use $refresh-issues antes da resposta final. Uma revisão pode cobrir vários commits da mesma tarefa. Atualize apenas as Issues afetadas. Se nada mudou, não edite as Issues.
-- Entregue por commit com verificações proporcionais ao risco. Uma Issue pode ser fechada após commit em `master` quando seu objetivo estiver atendido. Abra PR somente quando eu pedir explicitamente.
+```sh
+node "$HOME/.codex/skills/refresh-issues/scripts/setup.mjs" .
 ```
 
-Se quiser que o Codex mantenha o backlog sem pedir autorização a cada Issue, acrescente também:
+O mesmo comando funciona em PowerShell, macOS e Linux. Ele cria ou atualiza o `AGENTS.md` sem apagar as regras existentes. Para conferir sem alterar arquivos:
+
+```sh
+node "$HOME/.codex/skills/refresh-issues/scripts/setup.mjs" --check .
+```
+
+O setup adiciona esta regra:
+
+```md
+- Ao concluir uma tarefa ou commit que entrega uma feature, use $refresh-issues antes da resposta final. Uma revisão pode cobrir vários commits da mesma tarefa. Atualize apenas as Issues afetadas; se nada mudou, não edite as Issues.
+```
+
+Rodar o setup novamente não duplica a regra. Se o projeto já tiver uma instrução equivalente, o comando apenas informa que ela existe. Para uma skill instalada dentro do próprio projeto, troque o caminho do script por `.codex/skills/refresh-issues/scripts/setup.mjs`. O comando requer Node.js.
+
+Para ajustar o fluxo de PRs ao seu projeto, escreva essa preferência separadamente no `AGENTS.md`. Se quiser que o Codex mantenha o backlog sem pedir autorização a cada Issue, acrescente também:
 
 ```md
 - Autorizo o Codex a atualizar Issues relacionadas ao trabalho concluído e a registrar ideias futuras sem duplicatas. Feche uma Issue apenas quando seu objetivo estiver atendido.
 ```
+
+Para testar a skill em uma tarefa do Codex, peça: “Use $refresh-issues para revisar as Issues desta entrega”.
 
 A skill roda quando o Codex a chama. Ela **não instala um hook do Git**: um `git commit` feito fora de uma tarefa do Codex não a executa sozinho. Essa escolha evita iniciar uma nova sessão e atrasar cada commit.
 
