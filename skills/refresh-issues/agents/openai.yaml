@@ -1,0 +1,5 @@
+interface:
+  display_name: "Refresh Issues"
+  short_description: "Atualiza Issues após tarefas e commits"
+  default_prompt: "Use $refresh-issues para revisar as Issues após esta entrega."
+

@@ -19,54 +19,31 @@ Uma Issue pode guardar só uma ideia para discutir depois. Ela começa com objet
 
 ## Instalação
 
-Clone o repositório no diretório de skills do Codex:
+No Codex, peça:
 
-```sh
-git clone https://github.com/NandoKupka/refresh-issues.git "$HOME/.codex/skills/refresh-issues"
-```
+> Use $skill-installer para instalar as skills `skills/refresh-issues` e `skills/refresh-issues-setup` do repositório `NandoKupka/refresh-issues`.
 
-Crie `~/.codex/skills` antes, se a pasta ainda não existir. O resultado deve ficar assim:
+Isso instala as duas skills: uma revisa as Issues; a outra configura o projeto. Para ler e editar Issues, conecte o GitHub ao Codex ou configure o `gh` com acesso ao repositório.
 
-```text
-~/.codex/skills/refresh-issues/
-  SKILL.md
-  agents/openai.yaml
-  scripts/setup.mjs
-```
-
-Você também pode manter a pasta em `.codex/skills/refresh-issues/` dentro de um projeto. Para ler e editar Issues, conecte o GitHub ao Codex ou configure o `gh` com acesso ao repositório.
+Se você já clonou uma versão anterior em `~/.codex/skills/refresh-issues`, ela continua funcionando. Instale apenas `skills/refresh-issues-setup` com o `$skill-installer` para adicionar o setup.
 
 ## Setup no projeto
 
-No diretório do projeto, rode:
+Abra o projeto no Codex, digite `/` e selecione **refresh-issues-setup** no menu de skills. Você também pode escrever `$refresh-issues-setup` na conversa. A skill cria ou atualiza o `AGENTS.md` do projeto sem apagar as regras existentes. Se a regra já existir, ela não a duplica.
 
-```sh
-node "$HOME/.codex/skills/refresh-issues/scripts/setup.mjs" .
-```
-
-O mesmo comando funciona em PowerShell, macOS e Linux. Ele cria ou atualiza o `AGENTS.md` sem apagar as regras existentes. Para conferir sem alterar arquivos:
-
-```sh
-node "$HOME/.codex/skills/refresh-issues/scripts/setup.mjs" --check .
-```
-
-O setup adiciona esta regra:
+O setup adiciona esta instrução:
 
 ```md
 - Ao concluir uma tarefa ou commit que entrega uma feature, use $refresh-issues antes da resposta final. Uma revisão pode cobrir vários commits da mesma tarefa. Atualize apenas as Issues afetadas; se nada mudou, não edite as Issues.
 ```
 
-Rodar o setup novamente não duplica a regra. Se o projeto já tiver uma instrução equivalente, o comando apenas informa que ela existe. Para uma skill instalada dentro do próprio projeto, troque o caminho do script por `.codex/skills/refresh-issues/scripts/setup.mjs`. O comando requer Node.js.
-
-Para ajustar o fluxo de PRs ao seu projeto, escreva essa preferência separadamente no `AGENTS.md`. Se quiser que o Codex mantenha o backlog sem pedir autorização a cada Issue, acrescente também:
+O setup não define política de PR nem autoriza edição de Issues no GitHub. Se quiser que o Codex mantenha o backlog sem pedir autorização a cada Issue, acrescente separadamente ao `AGENTS.md`:
 
 ```md
 - Autorizo o Codex a atualizar Issues relacionadas ao trabalho concluído e a registrar ideias futuras sem duplicatas. Feche uma Issue apenas quando seu objetivo estiver atendido.
 ```
 
-Para testar a skill em uma tarefa do Codex, peça: “Use $refresh-issues para revisar as Issues desta entrega”.
-
-A skill roda quando o Codex a chama. Ela **não instala um hook do Git**: um `git commit` feito fora de uma tarefa do Codex não a executa sozinho. Essa escolha evita iniciar uma nova sessão e atrasar cada commit.
+A skill roda quando o Codex a chama durante uma tarefa. Ela **não instala um hook do Git**: um `git commit` feito fora de uma tarefa do Codex não a executa sozinho.
 
 ## Exemplo de Issue atualizada
 
